@@ -15,9 +15,14 @@ app.use("/auth", authRoutes);
 const feedbackRoutes = require("./router/feedback");
 app.use("/feedback", feedbackRoutes);
 // Connect MongoDB
+
 mongoose.connect(process.env.MONGO_URI)
-    .then(() => console.log("MongoDB Connected"))
-    .catch(err => console.log(err));
+.then(() => console.log("MongoDB Connected"))
+.catch(err => console.log(err));
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => console.log("Server running on port " + port));
+
+app.get("/", (req, res) => {
+    res.send("CTutor Backend is running");
+});
